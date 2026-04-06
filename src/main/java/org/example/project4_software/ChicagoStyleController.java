@@ -104,7 +104,7 @@ public class ChicagoStyleController {
         pizzaToAdd.setSize(getSelectedSize());
 
         if (pizzaToAdd instanceof BuildYourOwn) {
-            for (Topping topping : currentPizza.getToppings()) {
+            for (Topping topping : currentPizza.getTopping()) {
                 pizzaToAdd.addTopping(topping);
             }
         }

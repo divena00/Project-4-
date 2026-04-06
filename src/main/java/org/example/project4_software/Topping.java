@@ -14,7 +14,7 @@ public enum Topping {
     beef,
     ham;
 
-    public static ArrayList<Topping> getToppingd(String type){
+    public static ArrayList<Topping> getTopping(String type){
         ArrayList<Topping> toppings = new ArrayList<>();
         if(type.equalsIgnoreCase("org.example.project4_software.Deluxe")){
             toppings.add(sausage);
