@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-
+/**
+ * Chicago Style Controller
+ */
 public class ChicagoStyleController {
     @FXML
     private ComboBox<String> pizzaTypeBox;
