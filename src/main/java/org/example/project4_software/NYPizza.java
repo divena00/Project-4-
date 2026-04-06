@@ -1,5 +1,8 @@
-public class ChicagoPizza implements PizzaFactory {
+package org.example.project4_software;
+
+public class NYPizza implements PizzaFactory {
     private Pizza pizza;
+
     @Override
     public Pizza createDeluxe(){
         pizza = new Deluxe();
@@ -20,7 +23,6 @@ public class ChicagoPizza implements PizzaFactory {
         pizza = new BuildYourOwn();
         return pizza;
     }
-
 
 
 }

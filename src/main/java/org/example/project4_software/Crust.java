@@ -1,3 +1,5 @@
+package org.example.project4_software;
+
 public enum Crust {
     ChicagoDeluxe("Deep Dish"),
     NYDeluxe("Brooklyn"),
@@ -16,9 +18,9 @@ public enum Crust {
     }
     public static Crust getCrust(String pizza,String type){
         if (type.equalsIgnoreCase("New York")){
-            if (pizza.equalsIgnoreCase("Deluxe")){
+            if (pizza.equalsIgnoreCase("org.example.project4_software.Deluxe")){
                 return NYDeluxe;
-            }else if(pizza.equalsIgnoreCase("Meatzza")){
+            }else if(pizza.equalsIgnoreCase("org.example.project4_software.Meatzza")){
                 return NYMeatzza;
             }else if(pizza.equalsIgnoreCase("BBQ Chicken")){
                 return NYBBQChicken;
@@ -26,9 +28,9 @@ public enum Crust {
                 return NYBYO;
             }
         }else if(type.equalsIgnoreCase("Chicago")){
-            if (pizza.equalsIgnoreCase("Deluxe")){
+            if (pizza.equalsIgnoreCase("org.example.project4_software.Deluxe")){
                 return ChicagoDeluxe;
-            }else if(pizza.equalsIgnoreCase("Meatzza")){
+            }else if(pizza.equalsIgnoreCase("org.example.project4_software.Meatzza")){
                 return ChicagoMeatzza;
             }else if(pizza.equalsIgnoreCase("BBQ Chicken")){
                 return ChicagoBBQChicken;

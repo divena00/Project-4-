@@ -1,4 +1,6 @@
-public class BBQChicken extends Pizza{
+package org.example.project4_software;
+
+public class BBQChicken extends Pizza {
     BBQChicken(){
         addTopping(Topping.BBQChicken);
         addTopping(Topping.greenpepper);

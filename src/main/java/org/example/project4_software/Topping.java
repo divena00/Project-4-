@@ -1,3 +1,5 @@
+package org.example.project4_software;
+
 import java.util.ArrayList;
 
 public enum Topping {
@@ -14,7 +16,7 @@ public enum Topping {
 
     public static ArrayList<Topping> getToppingd(String type){
         ArrayList<Topping> toppings = new ArrayList<>();
-        if(type.equalsIgnoreCase("Deluxe")){
+        if(type.equalsIgnoreCase("org.example.project4_software.Deluxe")){
             toppings.add(sausage);
             toppings.add(pepperoni);
             toppings.add(greenpepper);
@@ -25,7 +27,7 @@ public enum Topping {
             toppings.add(greenpepper);
             toppings.add(provolone);
             toppings.add(cheddar);
-        }else if(type.equalsIgnoreCase("Meatzza")){
+        }else if(type.equalsIgnoreCase("org.example.project4_software.Meatzza")){
             toppings.add(sausage);
             toppings.add(pepperoni);
             toppings.add(beef);

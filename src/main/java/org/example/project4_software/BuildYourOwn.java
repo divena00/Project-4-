@@ -1,14 +1,12 @@
-public class Meatzza extends Pizza {
-    Meatzza(){
-        addTopping(Topping.sausage);
-        addTopping(Topping.pepperoni);
-        addTopping(Topping.beef);
-        addTopping(Topping.ham);
-    }
+package org.example.project4_software;
 
+public class BuildYourOwn extends Pizza {
+    BuildYourOwn(){
+
+    }
     @Override
     public String toString(){
-        return "Meatzza" + super.toString();
+        return "Build Your Own" + super.toString();
     }
     @Override
     public boolean add(Topping topping){
@@ -20,12 +18,13 @@ public class Meatzza extends Pizza {
     }
     @Override
     public double price(){
+        double extra = (this.sizeToppings() * 1.69);
         if(super.getSize() == Size.small){
-            return 19.99;
+            return 10.99 + extra;
         }else if(super.getSize() == Size.medium){
-            return 21.99;
-        }else if (super.getSize() == Size.large){
-            return 23.99;
+            return 12.99 + extra;
+        }else if(super.getSize() == Size.large){
+            return 14.99 + extra;
         }
         return 0;
     }

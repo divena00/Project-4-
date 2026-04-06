@@ -44,7 +44,7 @@ public class ChicagoStyleController {
     private ImageView pizzaImage;
 
     private final ObservableList<String> pizzaTypes =
-            FXCollections.observableArrayList("Deluxe", "BBQ Chicken", "Meatzza", "Build Your Own");
+            FXCollections.observableArrayList("org.example.project4_software.Deluxe", "BBQ Chicken", "org.example.project4_software.Meatzza", "Build Your Own");
 
     private PizzaFactory pizzaFactory;
     private Pizza currentPizza;
@@ -54,7 +54,7 @@ public class ChicagoStyleController {
         pizzaFactory = new ChicagoPizza();
 
         pizzaTypeBox.setItems(pizzaTypes);
-        pizzaTypeBox.setValue("Deluxe");
+        pizzaTypeBox.setValue("org.example.project4_software.Deluxe");
 
         availableToppingsList.setItems(FXCollections.observableArrayList(Topping.values()));
         mediumButton.setSelected(true);
@@ -117,7 +117,7 @@ public class ChicagoStyleController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("RU Pizza");
+        stage.setTitle("RU org.example.project4_software.Pizza");
         stage.show();
     }
 
@@ -135,11 +135,11 @@ public class ChicagoStyleController {
     private Pizza createPizzaFromSelection() {
         String type = pizzaTypeBox.getValue();
 
-        if ("Deluxe".equals(type)) {
+        if ("org.example.project4_software.Deluxe".equals(type)) {
             return pizzaFactory.createDeluxe();
         } else if ("BBQ Chicken".equals(type)) {
             return pizzaFactory.createBBQChicken();
-        } else if ("Meatzza".equals(type)) {
+        } else if ("org.example.project4_software.Meatzza".equals(type)) {
             return pizzaFactory.createMeatzza();
         } else {
             return pizzaFactory.createBuildYourOwn();
@@ -148,11 +148,11 @@ public class ChicagoStyleController {
 
     private Size getSelectedSize() {
         if (smallButton.isSelected()) {
-            return Size.SMALL;
+            return Size.small;
         } else if (mediumButton.isSelected()) {
-            return Size.MEDIUM;
+            return Size.medium;
         } else {
-            return Size.LARGE;
+            return Size.large;
         }
     }
 
@@ -182,11 +182,11 @@ public class ChicagoStyleController {
         String type = pizzaTypeBox.getValue();
         String imagePath = null;
 
-        if ("Deluxe".equals(type)) {
+        if ("org.example.project4_software.Deluxe".equals(type)) {
             imagePath = "/images/chicago-deluxe.png";
         } else if ("BBQ Chicken".equals(type)) {
             imagePath = "/images/chicago-bbq.png";
-        } else if ("Meatzza".equals(type)) {
+        } else if ("org.example.project4_software.Meatzza".equals(type)) {
             imagePath = "/images/chicago-meatzza.png";
         } else if ("Build Your Own".equals(type)) {
             imagePath = "/images/chicago-byo.png";

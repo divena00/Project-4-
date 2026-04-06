@@ -1,3 +1,5 @@
+package org.example.project4_software;
+
 public class Deluxe extends Pizza {
     Deluxe(){
         addTopping(Topping.sausage);
@@ -19,7 +21,7 @@ public class Deluxe extends Pizza {
     }
     @Override
     public String toString(){
-        return "Deluxe" + super.toString();
+        return "org.example.project4_software.Deluxe" + super.toString();
     }
     @Override
     public boolean add(Topping topping){
