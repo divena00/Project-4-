@@ -4,42 +4,39 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public abstract class Pizza {
-   private ArrayList<Topping> toppings;
-   private Crust crust;
-   private Size size;
-   public abstract double price();
-   private String type;
-   Pizza(){
-       size = size.small;
-       crust = Crust.ChicagoBYO;
-   }
-   public void setType(String pizza){
-       if(pizza.equalsIgnoreCase("NY")){
-           type = "New York Style";
-       }else if(pizza.equalsIgnoreCase("Chicago")){
-           type = "Chicago Style";
-       }
+    private ArrayList<Topping> toppings;
+    private Crust crust;
+    private Size size;
+    private String type;
 
-   }
-    private String toStringToppings(){
+    public abstract double price();
+    Pizza() {
+        toppings = new ArrayList<>();
+        size = Size.small;
+        crust = Crust.ChicagoBYO;
+    }
+    public void setType(String pizza) {
+        if (pizza.equalsIgnoreCase("NY")) {
+            type = "New York Style";
+        } else if (pizza.equalsIgnoreCase("Chicago")) {
+            type = "Chicago Style";
+        }
+    }
+    private String toStringToppings() {
         String x = "";
-        for ( Topping topping : toppings){
+        for (Topping topping : toppings) {
             x += topping.toString() + ", ";
         }
         return x;
     }
-
-    public String toString(){
-       return "(" + type + "-" + Crust.crustInfo(crust) + ")" + toStringToppings() + "" + size.toString().toUpperCase(Locale.ROOT) + "" + price();
-   }
-   public void addTopping(Topping topping){
-       toppings.add(topping);
-   }
-   public void removeTopping(Topping topping){
-       toppings.remove(topping);
-
-   }
-    public boolean add(Topping topping) {
+    @Override
+    public String toString() {
+        return "(" + type + "-" + Crust.crustInfo(crust) + ")" +
+                toStringToppings() + " " +
+                size.toString().toUpperCase(Locale.ROOT) + " " +
+                price();
+    }
+    public boolean addTopping(Topping topping) {
         if (toppings.contains(topping)) {
             return false;
         }
@@ -49,22 +46,31 @@ public abstract class Pizza {
         toppings.add(topping);
         return true;
     }
-    public boolean remove(Topping topping) {
+    public boolean removeTopping(Topping topping) {
         return toppings.remove(topping);
     }
-   public int sizeToppings(){
-       return toppings.size();
-    }
-    public Size getSize(){
-       return size;
-    }
-    public void setSize(){
-       this.size = size;
-    }
-    public void setCrust(Crust crust){
-       this.crust = crust;
+
+    public int sizeToppings() {
+        return toppings.size();
     }
 
+    public Size getSize() {
+        return size;
+    }
 
+    public void setSize(Size size) {
+        this.size = size;
+    }
 
+    public void setCrust(Crust crust) {
+        this.crust = crust;
+    }
+
+    public Crust getCrust() {
+        return crust;
+    }
+
+    public ArrayList<Topping> getToppings() {
+        return toppings;
+    }
 }

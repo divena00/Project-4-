@@ -97,21 +97,19 @@ public class ChicagoStyleController {
             updatePrice();
         }
     }
-
     @FXML
     private void handleAddToOrder() {
         Pizza pizzaToAdd = createPizzaFromSelection();
         pizzaToAdd.setSize(getSelectedSize());
 
         if (pizzaToAdd instanceof BuildYourOwn) {
-            for (Topping topping : currentPizza.getTopping()) {
+            for (Topping topping : currentPizza.getToppings()) {
                 pizzaToAdd.addTopping(topping);
             }
         }
 
-        MainController.currentOrder.addPizza(pizzaToAdd);
+        MainController.Order.addPizza(pizzaToAdd);
     }
-
     @FXML
     private void handleMainMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
@@ -145,7 +143,6 @@ public class ChicagoStyleController {
             return pizzaFactory.createBuildYourOwn();
         }
     }
-
     private Size getSelectedSize() {
         if (smallButton.isSelected()) {
             return Size.small;
@@ -155,7 +152,6 @@ public class ChicagoStyleController {
             return Size.large;
         }
     }
-
     private void updateCrust() {
         crustField.setText(currentPizza.getCrust().toString());
     }
@@ -169,7 +165,6 @@ public class ChicagoStyleController {
                 FXCollections.observableArrayList(currentPizza.getToppings())
         );
     }
-
     private void updateCustomizationControls() {
         boolean byo = currentPizza instanceof BuildYourOwn;
         availableToppingsList.setDisable(!byo);
@@ -177,7 +172,6 @@ public class ChicagoStyleController {
         addToppingButton.setDisable(!byo);
         removeToppingButton.setDisable(!byo);
     }
-
     private void updateImage() {
         String type = pizzaTypeBox.getValue();
         String imagePath = null;
