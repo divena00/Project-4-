@@ -170,13 +170,13 @@ public class NYStyleController {
         String imagePath = null;
 
         if ("Deluxe".equals(type)) {
-            imagePath = "/images/ny-deluxe.png";
+            imagePath = "/org/example/project_4software/ny-deluxe.png";
         } else if ("BBQ Chicken".equals(type)) {
-            imagePath = "/images/ny-bbq.png";
+            imagePath = "/org/example/project_4software/ny-bbq.png";
         } else if ("Meatzza".equals(type)) {
-            imagePath = "/images/ny-meatzza.png";
+            imagePath = "/org/example/project_4software/ny-meatzza.png";
         } else if ("Build Your Own".equals(type)) {
-            imagePath = "/images/ny-byo.png";
+            imagePath = "/org/example/project_4software/ny-byo.png";
         }
 
         if (imagePath != null) {

@@ -165,13 +165,13 @@ public class ChicagoStyleController {
         String imagePath = null;
 
         if ("Deluxe".equals(type)) {
-            imagePath = "/images/chicago-deluxe.png";
+            imagePath = "/org/example/project_4software/chicago-deluxe.png";
         } else if ("BBQ Chicken".equals(type)) {
-            imagePath = "/images/chicago-bbq.png";
+            imagePath = "/org/example/project_4software/chicago-bbq.png";
         } else if ("Meatzza".equals(type)) {
-            imagePath = "/images/chicago-meatzza.png";
+            imagePath = "/org/example/project_4software/chicago-meatzza.png";
         } else if ("Build Your Own".equals(type)) {
-            imagePath = "/images/chicago-byo.png";
+            imagePath = "/org/example/project_4software/chicago-byo.png";
         }
         if (imagePath != null) {
             pizzaImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath))));
