@@ -7,16 +7,13 @@ public class Meatzza extends Pizza {
         addTopping(Topping.beef);
         addTopping(Topping.ham);
     }
-
     @Override
     public String toString(){
         return "org.example.project4_software.Meatzza" + super.toString();
     }
-    @Override
     public boolean add(Topping topping){
         return false;
     }
-    @Override
     public boolean remove(Topping topping){
         return false;
     }

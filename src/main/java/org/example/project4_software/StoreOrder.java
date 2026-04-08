@@ -14,9 +14,9 @@ public class StoreOrder {
         return orders;
     }
     public ArrayList<Integer> getOrderNum(){
+        orderNum.clear();
         for (Order order : orders) {
-            int num = order.getOrderNum();
-            orderNum.add(num);
+            orderNum.add(order.getOrderNum());
         }
         return orderNum;
     }
@@ -38,9 +38,5 @@ public class StoreOrder {
     public boolean removeOrder(Order order) {
         return orders.remove(order);
     }
-
-
-
-
 
 }

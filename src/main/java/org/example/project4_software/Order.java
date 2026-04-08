@@ -45,7 +45,7 @@ public class Order{
         return null;
     }
     public double getSubtotal(){
-        double price = 0;
+        double price = 0.0;
         for(Pizza pp: pizzaOrder){
             price += pp.price();
         }
@@ -60,9 +60,4 @@ public class Order{
         }
         return (this.getSubtotal() + getTaxRate());
     }
-
-
-
-
-
 }
