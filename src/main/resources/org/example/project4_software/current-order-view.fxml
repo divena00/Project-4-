@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.project4_software.OrderController"
+            prefWidth="650" prefHeight="450">
+
+    <children>
+
+        <!-- Title -->
+        <Label text="Current Order"
+               layoutX="260" layoutY="20"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+        <!-- Pizza List -->
+        <Label text="Pizzas:"
+               layoutX="50" layoutY="70"/>
+
+        <ListView fx:id="pizzaListView"
+                  layoutX="50" layoutY="100"
+                  prefWidth="250" prefHeight="200"/>
+
+        <!-- Order Details -->
+        <Label text="Order Details:"
+               layoutX="330" layoutY="70"/>
+
+        <TextArea fx:id="orderDetailsArea"
+                  layoutX="330" layoutY="100"
+                  prefWidth="270" prefHeight="200"
+                  editable="false"
+                  wrapText="true"/>
+
+        <!-- Totals -->
+        <Label text="Subtotal:"
+               layoutX="50" layoutY="320"/>
+        <TextField fx:id="subtotalFeild"
+                   layoutX="120" layoutY="315"
+                   prefWidth="120"
+                   editable="false"/>
+
+        <Label text="Tax:"
+               layoutX="260" layoutY="320"/>
+        <TextField fx:id="taxFeild"
+                   layoutX="300" layoutY="315"
+                   prefWidth="120"
+                   editable="false"/>
+
+        <Label text="Total:"
+               layoutX="440" layoutY="320"/>
+        <TextField fx:id="totalFeild"
+                   layoutX="490" layoutY="315"
+                   prefWidth="120"
+                   editable="false"/>
+
+        <!-- Buttons -->
+        <Button text="Remove Pizza"
+                layoutX="50" layoutY="370"
+                onAction="#handleRemovePizza"/>
+
+        <Button text="Clear Order"
+                layoutX="180" layoutY="370"
+                onAction="#handleClearOrder"/>
+
+        <Button text="Place Order"
+                layoutX="300" layoutY="370"
+                onAction="#handlePlaceOrder"/>
+
+        <Button text="View Orders"
+                layoutX="420" layoutY="370"
+                onAction="#handleViewOrders"/>
+
+    </children>
+</AnchorPane>

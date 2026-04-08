@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.project4_software.StoreOrderController"
+            prefWidth="600" prefHeight="400">
+
+    <children>
+
+        <!-- Title -->
+        <Label text="Store Orders"
+               layoutX="240" layoutY="20"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+        <!-- Order Selection -->
+        <Label text="Select Order:"
+               layoutX="50" layoutY="80"/>
+
+        <ComboBox fx:id="orderNumberBox"
+                  layoutX="150" layoutY="75"
+                  prefWidth="150"
+                  onAction="#handleSelectOrder"/>
+
+        <!-- Order Details -->
+        <TextArea fx:id="orderDetailsArea"
+                  layoutX="50" layoutY="120"
+                  prefWidth="500" prefHeight="180"
+                  editable="false"
+                  wrapText="true"/>
+
+        <!-- Total -->
+        <Label text="Order Total:"
+               layoutX="50" layoutY="320"/>
+
+        <TextField fx:id="orderTotalFeild"
+                   layoutX="150" layoutY="315"
+                   prefWidth="150"
+                   editable="false"/>
+
+        <!-- Buttons -->
+        <Button text="Cancel Order"
+                layoutX="350" layoutY="315"
+                onAction="#handleCancelOrder"/>
+
+        <Button text="Refresh"
+                layoutX="480" layoutY="315"
+                onAction="#handleSelectOrder"/>
+
+    </children>
+</AnchorPane>
