@@ -57,7 +57,7 @@ public class MainController {
      * @throws IOException if FXML cannot be loaded
      */
     public void openNYPizzaView(ActionEvent event) throws IOException {
-        switchScene(event, "nypizza-view.fxml");
+        switchScene(event, "ny-pizza-view.fxml");
     }
 
     /**
@@ -67,7 +67,7 @@ public class MainController {
      * @throws IOException if FXML cannot be loaded
      */
     public void openChicagoPizzaView(ActionEvent event) throws IOException {
-        switchScene(event, "chicagopizza-view.fxml");
+        switchScene(event, "chicago-pizza-view.fxml");
     }
 
     /**
@@ -77,7 +77,7 @@ public class MainController {
      * @throws IOException if FXML cannot be loaded
      */
     public void openCurrentOrderView(ActionEvent event) throws IOException {
-        switchScene(event, "order-view.fxml");
+        switchScene(event, "current-order-view.fxml");
     }
 
     /**
@@ -87,7 +87,7 @@ public class MainController {
      * @throws IOException if FXML cannot be loaded
      */
     public void openStoreOrdersView(ActionEvent event) throws IOException {
-        switchScene(event, "storeorder-view.fxml");
+        switchScene(event, "store-orders-view.fxml");
     }
 
     /**

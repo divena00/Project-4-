@@ -165,16 +165,24 @@ public class ChicagoStyleController {
         String imagePath = null;
 
         if ("Deluxe".equals(type)) {
-            imagePath = "/org/example/project_4software/chicago-deluxe.png";
+            imagePath = "/org/example/project4_software/chicago-deluxe.png";
         } else if ("BBQ Chicken".equals(type)) {
-            imagePath = "/org/example/project_4software/chicago-bbq.png";
+            imagePath = "/org/example/project4_software/chicago-bbq.png";
         } else if ("Meatzza".equals(type)) {
-            imagePath = "/org/example/project_4software/chicago-meatzza.png";
+            imagePath = "/org/example/project4_software/chicago-meatzza.png";
         } else if ("Build Your Own".equals(type)) {
-            imagePath = "/org/example/project_4software/chicago-byo.png";
+            imagePath = "/org/example/project4_software/chicago-byo.png";
         }
-        if (imagePath != null) {
-            pizzaImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath))));
+
+        try {
+            if (imagePath != null) {
+                pizzaImage.setImage(new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream(imagePath))
+                ));
+            }
+        } catch (Exception e) {
+            System.out.println("Image not found: " + imagePath);
+            pizzaImage.setImage(null);
         }
     }
 
