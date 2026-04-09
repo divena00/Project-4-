@@ -21,7 +21,7 @@ public class Deluxe extends Pizza {
     }
     @Override
     public String toString(){
-        return "org.example.project4_software.Deluxe" + super.toString();
+        return "Deluxe" + super.toString();
     }
 
     public boolean add(Topping topping){

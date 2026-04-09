@@ -9,7 +9,7 @@ public class Meatzza extends Pizza {
     }
     @Override
     public String toString(){
-        return "org.example.project4_software.Meatzza" + super.toString();
+        return "Meatzza" + super.toString();
     }
     public boolean add(Topping topping){
         return false;
