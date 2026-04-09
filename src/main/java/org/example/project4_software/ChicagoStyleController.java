@@ -123,11 +123,11 @@ public class ChicagoStyleController {
     private Pizza createPizzaFromSelection() {
         String type = pizzaTypeBox.getValue();
 
-        if ("org.example.project4_software.Deluxe".equals(type)) {
+        if ("Deluxe".equals(type)) {
             return pizzaFactory.createDeluxe();
         } else if ("BBQ Chicken".equals(type)) {
             return pizzaFactory.createBBQChicken();
-        } else if ("org.example.project4_software.Meatzza".equals(type)) {
+        } else if ("Meatzza".equals(type)) {
             return pizzaFactory.createMeatzza();
         } else {
             return pizzaFactory.createBuildYourOwn();
