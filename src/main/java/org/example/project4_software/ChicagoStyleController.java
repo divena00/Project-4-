@@ -11,35 +11,23 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Objects;
-
-/**
- * Chicago Style Controller
- */
 public class ChicagoStyleController {
     @FXML
     private ComboBox<String> pizzaTypeBox;
-
     @FXML
     private RadioButton smallButton, mediumButton, largeButton;
-
     @FXML
     private ToggleGroup sizeGroup;
-
     @FXML
     private TextField crustField, priceField;
-
     @FXML
     private ListView<Topping> availableToppingsList;
-
     @FXML
     private ListView<Topping> selectedToppingsList;
-
     @FXML
     private Button addToppingButton, removeToppingButton, addToOrderButton, mainMenuButton;
-
     @FXML
     private ImageView pizzaImage;
     private final ObservableList<String> pizzaTypes =
@@ -59,14 +47,15 @@ public class ChicagoStyleController {
     private void handlePizzaTypeChange() {
         refreshView();
     }
-
     @FXML
     private void handleSizeChange() {
         refreshView();
     }
-
     @FXML
     private void handleAddTopping() {
+        if (!isBuildYourOwnSelected()) {
+            return;
+        }
         Topping topping = availableToppingsList.getSelectionModel().getSelectedItem();
         if (topping == null) {
             return;
@@ -77,14 +66,15 @@ public class ChicagoStyleController {
             updatePrice();
         }
     }
-
     @FXML
     private void handleRemoveTopping() {
+        if (!isBuildYourOwnSelected()) {
+            return;
+        }
         Topping topping = selectedToppingsList.getSelectionModel().getSelectedItem();
         if (topping == null) {
             return;
         }
-
         if (currentPizza.removeTopping(topping)) {
             updateSelectedToppings();
             updatePrice();
@@ -95,20 +85,25 @@ public class ChicagoStyleController {
         Pizza pizzaToAdd = createPizzaFromSelection();
         pizzaToAdd.setSize(getSelectedSize());
 
-        if (pizzaToAdd instanceof BuildYourOwn) {
+        if (isBuildYourOwnSelected()) {
             for (Topping topping : currentPizza.getToppings()) {
                 pizzaToAdd.addTopping(topping);
             }
         }
+
         MainController.currentOrder.addPizza(pizzaToAdd);
     }
     @FXML
-    private void handleMainMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("RU org.example.project4_software.Pizza");
-        stage.show();
+    private void handleMainMenu(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("RU Pizza");
+            stage.show();
+        } catch (IOException | NullPointerException e) {
+            showAlert("Navigation Error", "Could not load main menu.");
+        }
     }
     private void refreshView() {
         currentPizza = createPizzaFromSelection();
@@ -122,7 +117,6 @@ public class ChicagoStyleController {
     }
     private Pizza createPizzaFromSelection() {
         String type = pizzaTypeBox.getValue();
-
         if ("Deluxe".equals(type)) {
             return pizzaFactory.createDeluxe();
         } else if ("BBQ Chicken".equals(type)) {
@@ -142,8 +136,11 @@ public class ChicagoStyleController {
             return Size.large;
         }
     }
+    private boolean isBuildYourOwnSelected() {
+        return "Build Your Own".equals(pizzaTypeBox.getValue());
+    }
     private void updateCrust() {
-        crustField.setText(currentPizza.getCrust().toString());
+        crustField.setText(Crust.crustInfo(currentPizza.getCrust()));
     }
     private void updatePrice() {
         priceField.setText(String.format("%.2f", currentPizza.price()));
@@ -154,7 +151,7 @@ public class ChicagoStyleController {
         );
     }
     private void updateCustomizationControls() {
-        boolean byo = currentPizza instanceof BuildYourOwn;
+        boolean byo = isBuildYourOwnSelected();
         availableToppingsList.setDisable(!byo);
         addToppingButton.setDisable(!byo);
         removeToppingButton.setDisable(!byo);
@@ -172,18 +169,24 @@ public class ChicagoStyleController {
         } else if ("Build Your Own".equals(type)) {
             imagePath = "/org/example/project4_software/chicago-byo.png";
         }
-
         try {
             if (imagePath != null) {
                 pizzaImage.setImage(new Image(
                         Objects.requireNonNull(getClass().getResourceAsStream(imagePath))
                 ));
+            } else {
+                pizzaImage.setImage(null);
             }
         } catch (Exception e) {
-            System.out.println("Image not found: " + imagePath);
             pizzaImage.setImage(null);
         }
     }
-
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 }

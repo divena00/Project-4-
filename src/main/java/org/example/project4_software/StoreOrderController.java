@@ -9,8 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -156,5 +158,45 @@ public class StoreOrderController {
         stage.setScene(new Scene(root));
         stage.setTitle("RU Pizza");
         stage.show();
+    }
+    /**
+     * Exports all placed orders to a text file.
+     *
+     * @param event action event
+     */
+    @FXML
+    private void handleExportOrders(ActionEvent event) {
+        if (MainController.storeOrders.getOrders().isEmpty()) {
+            printLine("No orders to export.");
+            return;
+        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export Orders");
+        fileChooser.setInitialFileName("orders.txt");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt")
+        );
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        File file = fileChooser.showSaveDialog(stage);
+        if (file == null) {
+            printLine("Export canceled.");
+            return;
+        }
+        try (FileWriter writer = new FileWriter(file)) {
+            for (Order order : MainController.storeOrders.getOrders()) {
+                writer.write("Order #" + order.getOrderNum() + "\n");
+
+                for (Pizza pizza : order.getPizzaOrder()) {
+                    writer.write(pizza.toString() + "\n");
+                }
+
+                writer.write(String.format("Order Total: $%.2f%n", order.getTotal()));
+                writer.write("\n");
+            }
+
+            printLine("Orders exported to " + file.getName());
+        } catch (IOException e) {
+            printLine("Error exporting orders.");
+        }
     }
 }

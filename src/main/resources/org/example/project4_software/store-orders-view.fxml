@@ -38,17 +38,17 @@
                    layoutX="150" layoutY="315"
                    prefWidth="150"
                    editable="false"/>
-
-        <!-- Buttons -->
+        <!-- Buttons  -->
         <Button text="Cancel Order"
-                layoutX="350" layoutY="315"
+                layoutX="300" layoutY="315"
                 onAction="#handleCancelOrder"/>
 
-        <Button text="Refresh"
-                layoutX="480" layoutY="315"
-                onAction="#handleSelectOrder"/>
+        <Button text="Export Orders"
+                layoutX="420" layoutY="315"
+                onAction="#handleExportOrders"/>
+
         <Button text="Main Menu"
-                layoutX="520" layoutY="370"
+                layoutX="520" layoutY="315"
                 onAction="#handleMainMenu"/>
 
     </children>

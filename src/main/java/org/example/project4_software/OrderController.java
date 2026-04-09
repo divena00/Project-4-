@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Objects;
 
@@ -42,21 +41,17 @@ public class OrderController {
             printLine("Invalid pizza.");
             return;
         }
-
         MainController.currentOrder.addPizza(pizza);
         currentOrder = MainController.currentOrder;
         updateView();
     }
-
     @FXML
     private void handleRemovePizza() {
         int index = pizzaListView.getSelectionModel().getSelectedIndex();
-
         if (index < 0) {
             printLine("No pizza selected.");
             return;
         }
-
         Pizza pizza = currentOrder.getPizzaOrder().get(index);
         currentOrder.removePizza(pizza);
         updateView();

@@ -8,38 +8,41 @@ public enum Crust {
     ChicagoMeatzza("Stuffed"),
     NYMeatzza("Hand-tossed"),
     ChicagoBYO("Pan"),
-    NYBYO("Hand Tossed");
-    private String crust = "";
-    Crust(String crust){
+    NYBYO("Hand-tossed");
+
+    private final String crust;
+
+    Crust(String crust) {
         this.crust = crust;
     }
-    public static String crustInfo(Crust crust){
+    public static String crustInfo(Crust crust) {
         return crust.crust;
     }
-    public static Crust getCrust(String pizza,String type){
-        if (type.equalsIgnoreCase("New York")){
-            if (pizza.equalsIgnoreCase("org.example.project4_software.Deluxe")){
+    @Override
+    public String toString() {
+        return crust;
+    }
+    public static Crust getCrust(String pizza, String type) {
+        if (type.equalsIgnoreCase("New York")) {
+            if (pizza.equalsIgnoreCase("Deluxe")) {
                 return NYDeluxe;
-            }else if(pizza.equalsIgnoreCase("org.example.project4_software.Meatzza")){
+            } else if (pizza.equalsIgnoreCase("Meatzza")) {
                 return NYMeatzza;
-            }else if(pizza.equalsIgnoreCase("BBQ Chicken")){
+            } else if (pizza.equalsIgnoreCase("BBQ Chicken")) {
                 return NYBBQChicken;
-            }else if(pizza.equalsIgnoreCase("Build Your Own")){
+            } else if (pizza.equalsIgnoreCase("Build Your Own")) {
                 return NYBYO;
             }
-        }else if(type.equalsIgnoreCase("Chicago")){
-            if (pizza.equalsIgnoreCase("org.example.project4_software.Deluxe")){
+        } else if (type.equalsIgnoreCase("Chicago")) {
+            if (pizza.equalsIgnoreCase("Deluxe")) {
                 return ChicagoDeluxe;
-            }else if(pizza.equalsIgnoreCase("org.example.project4_software.Meatzza")){
+            } else if (pizza.equalsIgnoreCase("Meatzza")) {
                 return ChicagoMeatzza;
-            }else if(pizza.equalsIgnoreCase("BBQ Chicken")){
+            } else if (pizza.equalsIgnoreCase("BBQ Chicken")) {
                 return ChicagoBBQChicken;
-            }else if(pizza.equalsIgnoreCase("Build Your Own")){
+            } else if (pizza.equalsIgnoreCase("Build Your Own")) {
                 return ChicagoBYO;
-            }else{
-                return null;
             }
-
         }
         return null;
     }

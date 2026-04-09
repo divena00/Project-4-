@@ -1,28 +1,32 @@
 package org.example.project4_software;
 
 public class ChicagoPizza implements PizzaFactory {
-    private Pizza pizza;
     @Override
-    public Pizza createDeluxe(){
-        pizza = new Deluxe();
+    public Pizza createDeluxe() {
+        Pizza pizza = new Deluxe();
+        pizza.setCrust(Crust.ChicagoDeluxe);
+        pizza.setType("Chicago");
         return pizza;
     }
     @Override
-    public Pizza createMeatzza(){
-        pizza = new Meatzza();
+    public Pizza createMeatzza() {
+        Pizza pizza = new Meatzza();
+        pizza.setCrust(Crust.ChicagoMeatzza);
+        pizza.setType("Chicago");
         return pizza;
     }
     @Override
-    public Pizza createBBQChicken(){
-        pizza = new BBQChicken();
+    public Pizza createBBQChicken() {
+        Pizza pizza = new BBQChicken();
+        pizza.setCrust(Crust.ChicagoBBQChicken);
+        pizza.setType("Chicago");
         return pizza;
     }
     @Override
-    public Pizza createBuildYourOwn(){
-        pizza = new BuildYourOwn();
+    public Pizza createBuildYourOwn() {
+        Pizza pizza = new BuildYourOwn();
+        pizza.setCrust(Crust.ChicagoBYO);
+        pizza.setType("Chicago");
         return pizza;
     }
-
-
-
 }

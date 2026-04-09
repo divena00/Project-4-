@@ -11,10 +11,12 @@ public class BBQChicken extends Pizza {
     public String toString(){
         return "BBQ Chicken" + super.toString();
     }
-    public boolean add(Topping topping){
+    @Override
+    public boolean addTopping(Topping topping) {
         return false;
     }
-    public boolean remove(Topping topping){
+    @Override
+    public boolean removeTopping(Topping topping) {
         return false;
     }
     @Override

@@ -13,7 +13,7 @@ public abstract class Pizza {
     Pizza() {
         toppings = new ArrayList<>();
         size = Size.small;
-        crust = Crust.ChicagoBYO;
+        crust = null;
     }
     public void setType(String pizza) {
         if (pizza.equalsIgnoreCase("NY")) {

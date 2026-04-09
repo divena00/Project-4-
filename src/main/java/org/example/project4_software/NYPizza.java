@@ -1,28 +1,33 @@
 package org.example.project4_software;
 
 public class NYPizza implements PizzaFactory {
-    private Pizza pizza;
+    @Override
+    public Pizza createDeluxe() {
+        Pizza pizza = new Deluxe();
+        pizza.setCrust(Crust.NYDeluxe);
+        pizza.setType("NY");
+        return pizza;
+    }
+    @Override
+    public Pizza createMeatzza() {
+        Pizza pizza = new Meatzza();
+        pizza.setCrust(Crust.NYMeatzza);
+        pizza.setType("NY");
+        return pizza;
+    }
+    @Override
+    public Pizza createBBQChicken() {
+        Pizza pizza = new BBQChicken();
+        pizza.setCrust(Crust.NYBBQChicken);
+        pizza.setType("NY");
+        return pizza;
+    }
 
     @Override
-    public Pizza createDeluxe(){
-        pizza = new Deluxe();
+    public Pizza createBuildYourOwn() {
+        Pizza pizza = new BuildYourOwn();
+        pizza.setCrust(Crust.NYBYO);
+        pizza.setType("NY");
         return pizza;
     }
-    @Override
-    public Pizza createMeatzza(){
-        pizza = new Meatzza();
-        return pizza;
-    }
-    @Override
-    public Pizza createBBQChicken(){
-        pizza = new BBQChicken();
-        return pizza;
-    }
-    @Override
-    public Pizza createBuildYourOwn(){
-        pizza = new BuildYourOwn();
-        return pizza;
-    }
-
-
 }
