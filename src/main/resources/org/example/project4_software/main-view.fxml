@@ -55,7 +55,7 @@
                 <Button GridPane.columnIndex="1"
                         onAction="#openNYPizzaView"
                         prefWidth="285.0" prefHeight="240.0"
-                        style="-fx-background-color: black; -fx-background-radius: 6;">
+                        style="-fx-background-color: purple; -fx-background-radius: 6;">
                     <graphic>
                         <VBox alignment="CENTER" spacing="10.0">
                             <children>
@@ -74,7 +74,7 @@
                 <Button GridPane.rowIndex="1"
                         onAction="#openStoreOrdersView"
                         prefWidth="285.0" prefHeight="240.0"
-                        style="-fx-background-color: black; -fx-background-radius: 6;">
+                        style="-fx-background-color: blue; -fx-background-radius: 6;">
                     <graphic>
                         <VBox alignment="CENTER" spacing="10.0">
                             <children>
@@ -93,7 +93,7 @@
                 <Button GridPane.columnIndex="1" GridPane.rowIndex="1"
                         onAction="#openCurrentOrderView"
                         prefWidth="285.0" prefHeight="240.0"
-                        style="-fx-background-color: black; -fx-background-radius: 6;">
+                        style="-fx-background-color: green; -fx-background-radius: 6;">
                     <graphic>
                         <VBox alignment="CENTER" spacing="10.0">
                             <children>
