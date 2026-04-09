@@ -161,7 +161,6 @@ public class NYStyleController {
     private void updateCustomizationControls() {
         boolean byo = currentPizza instanceof BuildYourOwn;
         availableToppingsList.setDisable(!byo);
-        selectedToppingsList.setDisable(!byo);
         addToppingButton.setDisable(!byo);
         removeToppingButton.setDisable(!byo);
     }

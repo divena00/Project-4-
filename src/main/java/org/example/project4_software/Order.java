@@ -7,7 +7,7 @@ public class Order{
     private int pizzaNum;
     private static final double NJ_TAX_RATE = 0.06625;
     private ArrayList<Pizza> pizzaOrder;
-    private static int count = 0;
+    private static int count = 1;
 
     public Order(){
         this.orderNum = count++;
@@ -59,5 +59,8 @@ public class Order{
             return 0;
         }
         return (this.getSubtotal() + getTaxRate());
+    }
+    public double getTax() {
+        return getSubtotal() * NJ_TAX_RATE;
     }
 }

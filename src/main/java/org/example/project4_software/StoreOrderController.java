@@ -1,15 +1,27 @@
 package org.example.project4_software;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.Objects;
+
+/**
+ * Controller for the store orders view.
+ * Displays all placed orders, allows selection, refresh, and cancellation.
+ */
 public class StoreOrderController {
 
-    public static StoreOrder storeOrder = new StoreOrder();
-
-    // ===== GUI COMPONENTS =====
     @FXML
-    private ComboBox<String> orderNumberBox; // dropdown of order numbers
+    private ComboBox<String> orderNumberBox;
 
     @FXML
     private TextArea orderDetailsArea;
@@ -17,42 +29,42 @@ public class StoreOrderController {
     @FXML
     private TextField orderTotalFeild;
 
-    // ==========================
-
     /**
-     * Initializes controller (populate order numbers if needed)
+     * Initializes the view by loading placed order numbers.
      */
     @FXML
     public void initialize() {
         refreshOrderNumbers();
+        clearView();
     }
 
     /**
-     * Refresh ComboBox with order numbers
+     * Reloads the order numbers from the shared store orders object.
      */
     private void refreshOrderNumbers() {
         orderNumberBox.getItems().clear();
 
-        for (Order order : storeOrder.getOrders()) {
+        for (Order order : MainController.storeOrders.getOrders()) {
             orderNumberBox.getItems().add(String.valueOf(order.getOrderNum()));
         }
     }
 
     /**
-     * When an order is selected → display details
+     * Handles selection of an order number from the combo box.
      */
     @FXML
     private void handleSelectOrder() {
         String selected = orderNumberBox.getValue();
 
         if (selected == null) {
-            printLine("No order selected.");
+            clearView();
             return;
         }
 
-        Order order = storeOrder.search(selected);
+        Order order = MainController.storeOrders.search(selected);
 
         if (order == null) {
+            clearView();
             printLine("Order not found.");
             return;
         }
@@ -61,21 +73,25 @@ public class StoreOrderController {
     }
 
     /**
-     * Display selected order info
+     * Displays the selected order's details and total.
+     *
+     * @param order selected order
      */
     private void displayOrder(Order order) {
         orderDetailsArea.clear();
 
-        orderDetailsArea.appendText(
-                "Order #" + order.getOrderNum() + "\n" +
-                        order.toString()
-        );
+        orderDetailsArea.appendText("Order #" + order.getOrderNum() + "\n");
 
+        for (Pizza pizza : order.getPizzaOrder()) {
+            orderDetailsArea.appendText(pizza.toString() + "\n");
+        }
+
+        orderDetailsArea.appendText(String.format("\nOrder Total: $%.2f", order.getTotal()));
         orderTotalFeild.setText(String.format("$%.2f", order.getTotal()));
     }
 
     /**
-     * Cancel/remove selected order
+     * Cancels the selected order and removes it from store orders.
      */
     @FXML
     private void handleCancelOrder() {
@@ -86,38 +102,59 @@ public class StoreOrderController {
             return;
         }
 
-        Order order = storeOrder.search(selected);
+        Order order = MainController.storeOrders.search(selected);
 
         if (order == null) {
             printLine("Order not found.");
             return;
         }
 
-        storeOrder.removeOrder(order);
-
-        printLine("Order #" + selected + " canceled.");
+        MainController.storeOrders.removeOrder(order);
 
         refreshOrderNumbers();
         clearView();
+        printLine("Order #" + selected + " canceled.");
     }
+
     /**
-     * Add order (called from OrderController when placing order)
+     * Refresh button handler.
      */
-    public void addOrder(Order order) {
-        storeOrder.addOrder(order);
+    @FXML
+    private void handleRefresh() {
         refreshOrderNumbers();
+        clearView();
     }
+
     /**
-     * Clear display
+     * Clears displayed order details.
      */
     private void clearView() {
         orderDetailsArea.clear();
-        orderTotalFeild.setText("");
+        orderTotalFeild.clear();
+        orderNumberBox.setValue(null);
     }
+
     /**
-     * Print helper (GUI-safe)
+     * Appends a message to the order details area.
+     *
+     * @param message message to display
      */
     private void printLine(String message) {
         orderDetailsArea.appendText(message + "\n");
+    }
+
+    /**
+     * Returns to the main menu view.
+     *
+     * @param event action event
+     * @throws IOException if FXML cannot be loaded
+     */
+    @FXML
+    private void handleMainMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("RU Pizza");
+        stage.show();
     }
 }

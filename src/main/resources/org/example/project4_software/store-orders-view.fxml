@@ -47,6 +47,9 @@
         <Button text="Refresh"
                 layoutX="480" layoutY="315"
                 onAction="#handleSelectOrder"/>
+        <Button text="Main Menu"
+                layoutX="520" layoutY="370"
+                onAction="#handleMainMenu"/>
 
     </children>
 </AnchorPane>

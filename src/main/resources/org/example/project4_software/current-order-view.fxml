@@ -70,6 +70,9 @@
         <Button text="View Orders"
                 layoutX="420" layoutY="370"
                 onAction="#handleViewOrders"/>
+        <Button text="Main Menu"
+                layoutX="520" layoutY="370"
+                onAction="#handleMainMenu"/>
 
     </children>
 </AnchorPane>
