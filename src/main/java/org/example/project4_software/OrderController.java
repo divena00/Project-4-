@@ -3,15 +3,10 @@ package org.example.project4_software;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.util.ArrayList;
-
-/**
- * Controller for managing orders (current + placed orders)
- */
 public class OrderController {
 
-    private Order currentOrder = new Order(); // current working order
-    private ArrayList<Order> storeOrders = new ArrayList<>(); // all placed orders
+    private Order currentOrder;
+
     @FXML
     private ListView<String> pizzaListView;
 
@@ -26,21 +21,24 @@ public class OrderController {
 
     @FXML
     private TextField totalFeild;
-    /**
-     * Adds a pizza to current order
-     */
+
+    @FXML
+    public void initialize() {
+        currentOrder = MainController.currentOrder;
+        updateView();
+    }
+
     public void addPizza(Pizza pizza) {
         if (pizza == null) {
             printLine("Invalid pizza.");
             return;
         }
 
-        currentOrder.addPizza(pizza);
+        MainController.currentOrder.addPizza(pizza);
+        currentOrder = MainController.currentOrder;
         updateView();
     }
-    /**
-     * Removes selected pizza from current order
-     */
+
     @FXML
     private void handleRemovePizza() {
         int index = pizzaListView.getSelectionModel().getSelectedIndex();
@@ -52,22 +50,16 @@ public class OrderController {
 
         Pizza pizza = currentOrder.getPizzaOrder().get(index);
         currentOrder.removePizza(pizza);
-
         updateView();
     }
 
-    /**
-     * Clears all pizzas in current order
-     */
     @FXML
     private void handleClearOrder() {
-        currentOrder = new Order();
+        MainController.currentOrder = new Order();
+        currentOrder = MainController.currentOrder;
         updateView();
     }
 
-    /**
-     * Places the current order
-     */
     @FXML
     private void handlePlaceOrder() {
         if (currentOrder.getPizzaOrder().isEmpty()) {
@@ -75,56 +67,42 @@ public class OrderController {
             return;
         }
 
-        storeOrders.add(currentOrder);
+        MainController.storeOrders.addOrder(currentOrder);
 
         printLine("Order #" + currentOrder.getOrderNum() + " placed.");
 
-        currentOrder = new Order(); // reset new order
+        MainController.currentOrder = new Order();
+        currentOrder = MainController.currentOrder;
         updateView();
     }
-    /**
-     * Cancels an order from store orders
-     */
-    @FXML
-    private void handleCancelOrder() {
-        if (storeOrders.isEmpty()) {
-            printLine("No orders to cancel.");
-            return;
-        }
-        Order removed = storeOrders.remove(storeOrders.size() - 1);
-        printLine("Order #" + removed.getOrderNum() + " canceled.");
-    }
-    /**
-     * Updates GUI view dynamically
-     */
+
     private void updateView() {
         pizzaListView.getItems().clear();
-        for (Pizza p : currentOrder.getPizzaOrder()) {
+
+        for (Pizza p : MainController.currentOrder.getPizzaOrder()) {
             pizzaListView.getItems().add(p.toString());
         }
-        subtotalFeild.setText(String.format("$%.2f", currentOrder.getSubtotal()));
-        taxFeild.setText(String.format("$%.2f", currentOrder.getTaxRate()));
-        totalFeild.setText(String.format("$%.2f", currentOrder.getTotal()));
-        orderDetailsArea.setText(currentOrder.toString());
+
+        subtotalFeild.setText(String.format("$%.2f", MainController.currentOrder.getSubtotal()));
+        taxFeild.setText(String.format("$%.2f", MainController.currentOrder.getTaxRate()));
+        totalFeild.setText(String.format("$%.2f", MainController.currentOrder.getTotal()));
+        orderDetailsArea.setText(MainController.currentOrder.toString());
     }
 
-    /**
-     * Helper method to print to GUI instead of System.out
-     */
     private void printLine(String message) {
         orderDetailsArea.appendText(message + "\n");
     }
-    /**
-     * Shows all placed orders (for "View Orders" tab)
-     */
+
     @FXML
     private void handleViewOrders() {
         orderDetailsArea.clear();
-        if (storeOrders.isEmpty()) {
+
+        if (MainController.storeOrders.getOrders().isEmpty()) {
             printLine("No orders placed.");
             return;
         }
-        for (Order order : storeOrders) {
+
+        for (Order order : MainController.storeOrders.getOrders()) {
             orderDetailsArea.appendText(
                     "Order #" + order.getOrderNum() + "\n" +
                             order.toString() +
@@ -133,6 +111,5 @@ public class OrderController {
         }
     }
 }
-
 
 
