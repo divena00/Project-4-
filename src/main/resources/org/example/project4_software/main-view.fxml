@@ -1,109 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefWidth="670.0" prefHeight="710.0"
-            xmlns="http://javafx.com/javafx/21"
+<BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.project4_software.MainController"
-            style="-fx-background-color: #edf3f4;">
+            prefWidth="670.0" prefHeight="710.0"
+            style="-fx-background-color: #eef5f4;">
 
-    <children>
-
-        <HBox layoutX="0.0" layoutY="60.0"
-              prefWidth="670.0" prefHeight="80.0"
-              alignment="CENTER"
-              style="-fx-background-color: #42a5f5;">
+    <top>
+        <VBox spacing="0">
             <children>
-                <Label text="RU PIZZA"
-                       style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <StackPane prefHeight="80.0"
+                           style="-fx-background-color: #3aa0ef;">
+                    <children>
+                        <Label text="RU PIZZA"
+                               style="-fx-text-fill: white; -fx-font-size: 42px; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold;"/>
+                    </children>
+                </StackPane>
             </children>
-        </HBox>
+        </VBox>
+    </top>
 
-        <GridPane layoutX="40.0" layoutY="170.0"
-                  hgap="35.0" vgap="18.0">
+    <center>
+        <GridPane hgap="28.0" vgap="18.0" padding="25.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0"/>
+                <ColumnConstraints percentWidth="50.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="50.0"/>
+                <RowConstraints percentHeight="50.0"/>
+            </rowConstraints>
 
             <children>
 
+                <!-- Chicago -->
                 <Button onAction="#openChicagoPizzaView"
-                        prefWidth="285.0" prefHeight="240.0"
-                        style="-fx-background-color: #d7a8f0; -fx-background-radius: 6;">
+                        prefWidth="280.0" prefHeight="235.0"
+                        style="-fx-background-color: #d9b3f3; -fx-background-radius: 6; -fx-cursor: hand;"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0">
+                        <VBox alignment="CENTER" spacing="10">
                             <children>
-                                <ImageView fitWidth="230.0" fitHeight="160.0" preserveRatio="false">
+                                <ImageView fitWidth="225.0" fitHeight="160.0" preserveRatio="false">
                                     <image>
-                                        <Image url="@chicago-deluxe.png"/>
+                                        <Image url="@chicago-byo.png"/>
                                     </image>
                                 </ImageView>
                                 <Label text="Chicago Style"
-                                       style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                                       style="-fx-text-fill: white; -fx-font-size: 16px;"/>
                             </children>
                         </VBox>
                     </graphic>
                 </Button>
 
-                <Button GridPane.columnIndex="1"
-                        onAction="#openNYPizzaView"
-                        prefWidth="285.0" prefHeight="240.0"
-                        style="-fx-background-color: black; -fx-background-radius: 6;">
+                <!-- NY -->
+                <Button onAction="#openNYPizzaView"
+                        prefWidth="280.0" prefHeight="235.0"
+                        style="-fx-background-color: black; -fx-background-radius: 6; -fx-cursor: hand;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="0">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0">
+                        <VBox alignment="CENTER" spacing="10">
                             <children>
-                                <ImageView fitWidth="230.0" fitHeight="160.0" preserveRatio="false">
+                                <ImageView fitWidth="225.0" fitHeight="160.0" preserveRatio="false">
                                     <image>
-                                        <Image url="@ny-deluxe.png"/>
+                                        <Image url="@ny-byo.png"/>
                                     </image>
                                 </ImageView>
                                 <Label text="NY Style"
-                                       style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                                       style="-fx-text-fill: white; -fx-font-size: 16px;"/>
                             </children>
                         </VBox>
                     </graphic>
                 </Button>
 
-                <Button GridPane.rowIndex="1"
-                        onAction="#openStoreOrdersView"
-                        prefWidth="285.0" prefHeight="240.0"
-                        style="-fx-background-color: black; -fx-background-radius: 6;">
+                <!-- Orders placed -->
+                <Button onAction="#openStoreOrdersView"
+                        prefWidth="280.0" prefHeight="235.0"
+                        style="-fx-background-color: black; -fx-background-radius: 6; -fx-cursor: hand;"
+                        GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0">
+                        <VBox alignment="CENTER" spacing="10">
                             <children>
-                                <ImageView fitWidth="230.0" fitHeight="160.0" preserveRatio="false">
+                                <ImageView fitWidth="225.0" fitHeight="160.0" preserveRatio="false">
                                     <image>
-                                        <Image url="@orders-icon.png"/>
+                                        <Image url="orders-icon.png"/>
                                     </image>
                                 </ImageView>
                                 <Label text="Orders Placed"
-                                       style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                                       style="-fx-text-fill: white; -fx-font-size: 16px;"/>
                             </children>
                         </VBox>
                     </graphic>
                 </Button>
 
-                <Button GridPane.columnIndex="1" GridPane.rowIndex="1"
-                        onAction="#openCurrentOrderView"
-                        prefWidth="285.0" prefHeight="240.0"
-                        style="-fx-background-color: black; -fx-background-radius: 6;">
+                <!-- Current order -->
+                <Button onAction="#openCurrentOrderView"
+                        prefWidth="280.0" prefHeight="235.0"
+                        style="-fx-background-color: black; -fx-background-radius: 6; -fx-cursor: hand;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0">
+                        <VBox alignment="CENTER" spacing="10">
                             <children>
-                                <ImageView fitWidth="230.0" fitHeight="160.0" preserveRatio="false">
+                                <ImageView fitWidth="225.0" fitHeight="160.0" preserveRatio="false">
                                     <image>
-                                        <Image url="@cart-icon.png"/>
+                                        <Image url="cart-icon.png"/>
                                     </image>
                                 </ImageView>
                                 <Label text="Current Order"
-                                       style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                                       style="-fx-text-fill: white; -fx-font-size: 16px;"/>
                             </children>
                         </VBox>
                     </graphic>
@@ -111,6 +127,6 @@
 
             </children>
         </GridPane>
+    </center>
 
-    </children>
-</AnchorPane>
+</BorderPane>

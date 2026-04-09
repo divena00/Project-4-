@@ -1,6 +1,7 @@
 package org.example.project4_software;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -46,6 +47,7 @@ public class MainController {
      * @param event action event
      * @throws IOException if FXML cannot be loaded
      */
+    @FXML
     public void openMainView(ActionEvent event) throws IOException {
         switchScene(event, "main-view.fxml");
     }
@@ -56,6 +58,7 @@ public class MainController {
      * @param event action event
      * @throws IOException if FXML cannot be loaded
      */
+    @FXML
     public void openNYPizzaView(ActionEvent event) throws IOException {
         switchScene(event, "ny-pizza-view.fxml");
     }
@@ -66,6 +69,7 @@ public class MainController {
      * @param event action event
      * @throws IOException if FXML cannot be loaded
      */
+    @FXML
     public void openChicagoPizzaView(ActionEvent event) throws IOException {
         switchScene(event, "chicago-pizza-view.fxml");
     }
@@ -76,6 +80,7 @@ public class MainController {
      * @param event action event
      * @throws IOException if FXML cannot be loaded
      */
+    @FXML
     public void openCurrentOrderView(ActionEvent event) throws IOException {
         switchScene(event, "current-order-view.fxml");
     }
@@ -86,6 +91,7 @@ public class MainController {
      * @param event action event
      * @throws IOException if FXML cannot be loaded
      */
+    @FXML
     public void openStoreOrdersView(ActionEvent event) throws IOException {
         switchScene(event, "store-orders-view.fxml");
     }
