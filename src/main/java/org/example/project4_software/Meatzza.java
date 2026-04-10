@@ -12,6 +12,10 @@ public class Meatzza extends Pizza {
         return false;
     }
     @Override
+    public String toString() {
+        return "Meatzza" + super.toString();
+    }
+    @Override
     public double price(){
         if(super.getSize() == Size.small){
             return 19.99;
