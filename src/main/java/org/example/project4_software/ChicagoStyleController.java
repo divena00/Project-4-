@@ -146,9 +146,7 @@ public class ChicagoStyleController {
         priceField.setText(String.format("%.2f", currentPizza.price()));
     }
     private void updateSelectedToppings() {
-        selectedToppingsList.setItems(
-                FXCollections.observableArrayList(currentPizza.getToppings())
-        );
+        selectedToppingsList.getItems().setAll(currentPizza.getToppings());
     }
     private void updateCustomizationControls() {
         boolean byo = isBuildYourOwnSelected();

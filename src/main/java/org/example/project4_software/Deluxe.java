@@ -9,14 +9,6 @@ public class Deluxe extends Pizza {
         addTopping(Topping.mushroom);
     }
     @Override
-    public boolean addTopping(Topping topping) {
-        return false;
-    }
-    @Override
-    public boolean removeTopping(Topping topping) {
-        return false;
-    }
-    @Override
     public double price(){
         if(super.getSize() == Size.small){
             return 18.99;

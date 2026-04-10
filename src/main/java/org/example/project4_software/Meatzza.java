@@ -8,14 +8,6 @@ public class Meatzza extends Pizza {
         addTopping(Topping.ham);
     }
     @Override
-    public String toString(){
-        return "Meatzza" + super.toString();
-    }
-    @Override
-    public boolean addTopping(Topping topping) {
-        return false;
-    }
-    @Override
     public boolean removeTopping(Topping topping) {
         return false;
     }

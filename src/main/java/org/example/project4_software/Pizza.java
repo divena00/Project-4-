@@ -23,11 +23,14 @@ public abstract class Pizza {
         }
     }
     private String toStringToppings() {
-        String x = "";
-        for (Topping topping : toppings) {
-            x += topping.toString() + ", ";
+        StringBuilder x = new StringBuilder();
+        for (int i = 0; i < toppings.size(); i++) {
+            x.append(toppings.get(i));
+            if (i < toppings.size() - 1) {
+                x.append(", ");
+            }
         }
-        return x;
+        return x.toString();
     }
     @Override
     public String toString() {
@@ -37,10 +40,13 @@ public abstract class Pizza {
                 price();
     }
     public boolean addTopping(Topping topping) {
+        if (topping == null) {
+            return false;
+        }
         if (toppings.contains(topping)) {
             return false;
         }
-        if (toppings.size() >= 5) {
+        if (this instanceof BuildYourOwn && toppings.size() >= 5) {
             return false;
         }
         toppings.add(topping);

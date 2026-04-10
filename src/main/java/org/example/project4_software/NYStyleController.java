@@ -147,9 +147,8 @@ public class NYStyleController {
         priceField.setText(String.format("%.2f", currentPizza.price()));
     }
     private void updateSelectedToppings() {
-        selectedToppingsList.setItems(
-                FXCollections.observableArrayList(currentPizza.getToppings())
-        );
+        selectedToppingsList.getItems().clear();
+        selectedToppingsList.getItems().addAll(currentPizza.getToppings());
     }
     private void updateCustomizationControls() {
         boolean byo = isBuildYourOwnSelected();

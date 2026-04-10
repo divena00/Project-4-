@@ -7,14 +7,7 @@ public class BBQChicken extends Pizza {
         addTopping(Topping.provolone);
         addTopping(Topping.cheddar);
     }
-    @Override
-    public String toString(){
-        return "BBQ Chicken" + super.toString();
-    }
-    @Override
-    public boolean addTopping(Topping topping) {
-        return false;
-    }
+
     @Override
     public boolean removeTopping(Topping topping) {
         return false;
