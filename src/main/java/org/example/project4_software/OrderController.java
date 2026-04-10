@@ -10,32 +10,39 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
-
+/**
+ * Controller for the Current Order view.
+ * Handles adding, removing, clearing, and placing orders,
+ * as well as displaying order details and totals.
+ * @author Divena Deshmukh
+ * @author Ishani Rajeshirke
+ */
 public class OrderController {
-
+    /** Current active order */
     private Order currentOrder;
-
+    /** List of pizzas in the order */
     @FXML
     private ListView<String> pizzaListView;
-
+    /** Displays order details */
     @FXML
     private TextArea orderDetailsArea;
-
+    /** Displays subtotal, tax, and total */
     @FXML
-    private TextField subtotalFeild;
+    private TextField subtotalFeild, taxFeild, totalFeild;
 
-    @FXML
-    private TextField taxFeild;
-
-    @FXML
-    private TextField totalFeild;
-
+    /**
+     * Initializes the controller and loads the current order.
+     */
     @FXML
     public void initialize() {
         currentOrder = MainController.currentOrder;
         updateView();
     }
-
+    /**
+     * Adds a pizza to the current order.
+     *
+     * @param pizza the pizza to add
+     */
     public void addPizza(Pizza pizza) {
         if (pizza == null) {
             printLine("Invalid pizza.");
@@ -45,6 +52,9 @@ public class OrderController {
         currentOrder = MainController.currentOrder;
         updateView();
     }
+    /**
+     * Removes the selected pizza from the order.
+     */
     @FXML
     private void handleRemovePizza() {
         int index = pizzaListView.getSelectionModel().getSelectedIndex();
@@ -56,13 +66,18 @@ public class OrderController {
         currentOrder.removePizza(pizza);
         updateView();
     }
-
+    /**
+     * Clears the current order.
+     */
     @FXML
     private void handleClearOrder() {
         MainController.currentOrder = new Order();
         currentOrder = MainController.currentOrder;
         updateView();
     }
+    /**
+     * Places the current order and stores it.
+     */
     @FXML
     private void handlePlaceOrder() {
         if (currentOrder == null || currentOrder.getPizzaOrder().isEmpty()) {
@@ -80,6 +95,9 @@ public class OrderController {
         printLine("Order #" + placedNumber + " placed.");
         updateView();
     }
+    /**
+     * Updates the GUI with current order details and totals.
+     */
     private void updateView() {
         pizzaListView.getItems().clear();
         orderDetailsArea.clear();
@@ -93,9 +111,18 @@ public class OrderController {
         taxFeild.setText(String.format("$%.2f", currentOrder.getTax())); // or getSalesTax()
         totalFeild.setText(String.format("$%.2f", currentOrder.getTotal()));
     }
+    /**
+     * Appends a message to the order details area.
+     *
+     * @param message message to display
+     */
     private void printLine(String message) {
         orderDetailsArea.appendText(message + "\n");
     }
+    /**
+     * Displays all placed orders.
+     */
+
     @FXML
     private void handleViewOrders() {
         orderDetailsArea.clear();
@@ -111,6 +138,12 @@ public class OrderController {
             );
         }
     }
+    /**
+     * Navigates back to the main menu.
+     *
+     * @param event button click event
+     * @throws IOException if FXML fails to load
+     */
     @FXML
     private void handleMainMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));

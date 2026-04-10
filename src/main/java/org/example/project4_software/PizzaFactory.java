@@ -1,27 +1,32 @@
 package org.example.project4_software;
 
+/**
+ * interface that handles pizza types
+ * @author Divena Deshmukh
+ * @author Ishani Rajeshirke
+ */
 public interface PizzaFactory {
     /**
-     * creates org.example.project4_software.Deluxe pizza
-     * @return org.example.project4_software.Pizza
+     * creates Deluxe pizza
+     * @return Pizza
      */
     Pizza createDeluxe();
 
     /**
-     * creates org.example.project4_software.Meatzza pizza
-     * @return org.example.project4_software.Pizza
+     * creates Meatzza pizza
+     * @return .Pizza
      */
     Pizza createMeatzza();
 
     /**
      * creates BBQ Chicken pizza
-     * @return org.example.project4_software.Pizza
+     * @return Pizza
      */
     Pizza createBBQChicken();
 
     /**
      * creates Build Your Own pizza
-     * @return org.example.project4_software.Pizza
+     * @return Pizza
      */
     Pizza createBuildYourOwn();
 }

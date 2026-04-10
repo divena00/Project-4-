@@ -19,15 +19,17 @@ import java.util.Objects;
 /**
  * Controller for the store orders view.
  * Displays all placed orders, allows selection, refresh, and cancellation.
+ * @author Divena Deshmukh
+ * @author Ishani Rajeshirke
  */
 public class StoreOrderController {
-
+    /** drop drown for number of orders*/
     @FXML
     private ComboBox<String> orderNumberBox;
-
+    /** text box for order details */
     @FXML
     private TextArea orderDetailsArea;
-
+    /** text feild for total order*/
     @FXML
     private TextField orderTotalFeild;
 

@@ -13,9 +13,10 @@ import java.io.IOException;
 /**
  * Controller for the main view.
  * Handles navigation between the different views in one stage.
+ * @author Divena Deshmukh
+ * @author Ishani Rajeshirke
  */
 public class MainController {
-
     /**
      * Stage used for scene switching.
      */

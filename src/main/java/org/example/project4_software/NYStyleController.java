@@ -11,30 +11,55 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Objects;
+/**
+ * Controller for the NY Style pizza ordering view.
+
+ * Handles user interactions for selecting pizza type, size,
+ * viewing toppings, customizing Build Your Own pizzas, and
+ * adding pizzas to the current order.
+ *
+ * @author Divena Deshmukh
+ * @author Ishani Rajeshirke
+ */
 public class NYStyleController {
+    /** ComboBox for selecting pizza type */
     @FXML
     private ComboBox<String> pizzaTypeBox;
+    /** Radio buttons for selecting pizza size */
     @FXML
     private RadioButton smallButton, mediumButton, largeButton;
+    /** Toggle group for size selection */
     @FXML
     private ToggleGroup sizeGroup;
+    /** TextFields to display crust type and price */
     @FXML
     private TextField crustField, priceField;
+    /** ListView of all available toppings (for BYO) */
     @FXML
     private ListView<Topping> availableToppingsList;
+    /** ListView of selected toppings for the pizza */
     @FXML
     private ListView<Topping> selectedToppingsList;
+    /** Buttons for adding/removing toppings, adding pizza, and navigation */
     @FXML
     private Button addToppingButton, removeToppingButton, addToOrderButton, mainMenuButton;
+    /** ImageView to display selected pizza image */
     @FXML
     private ImageView pizzaImage;
+    /** List of available pizza types */
     private final ObservableList<String> pizzaTypes =
             FXCollections.observableArrayList("Deluxe", "BBQ Chicken", "Meatzza", "Build Your Own");
+    /** Factory used to create Chicago-style pizzas */
     private PizzaFactory pizzaFactory;
+    /** Currently selected pizza */
     private Pizza currentPizza;
+    /**
+     * Initializes the controller.
+     * Sets up the pizza factory, default selections,
+     * and loads initial view data.
+     */
     @FXML
     public void initialize() {
         pizzaFactory = new NYPizza();
@@ -44,14 +69,26 @@ public class NYStyleController {
         mediumButton.setSelected(true);
         refreshView();
     }
+    /**
+     * Handles change in pizza type selection.
+     * Refreshes the view accordingly.
+     */
     @FXML
     private void handlePizzaTypeChange() {
         refreshView();
     }
+    /**
+     * Handles change in pizza size selection.
+     * Refreshes the view accordingly.
+     */
     @FXML
     private void handleSizeChange() {
         refreshView();
     }
+    /**
+     * Handles change in pizza type selection.
+     * Refreshes the view accordingly.
+     */
     @FXML
     private void handleAddTopping() {
         if (!isBuildYourOwnSelected()) {
@@ -67,6 +104,10 @@ public class NYStyleController {
             updatePrice();
         }
     }
+    /**
+     * Removes a selected topping from a Build Your Own pizza.
+     * Updates the toppings list and price dynamically.
+     */
     @FXML
     private void handleRemoveTopping() {
         if (!isBuildYourOwnSelected()) {
@@ -81,6 +122,10 @@ public class NYStyleController {
             updatePrice();
         }
     }
+    /**
+     * Adds the currently configured pizza to the current order.
+     * Copies toppings if it is a Build Your Own pizza.
+     */
     @FXML
     private void handleAddToOrder() {
         Pizza pizzaToAdd = createPizzaFromSelection();
@@ -94,6 +139,11 @@ public class NYStyleController {
 
         MainController.currentOrder.addPizza(pizzaToAdd);
     }
+    /**
+     * Navigates back to the main menu view.
+     *
+     * @param event the action event triggered by the button
+     */
     @FXML
     private void handleMainMenu(ActionEvent event) {
         try {
@@ -106,6 +156,9 @@ public class NYStyleController {
             showAlert("Navigation Error", "Could not load main menu.");
         }
     }
+    /**
+     * Refreshes the entire view based on current selections.
+     */
     private void refreshView() {
         currentPizza = createPizzaFromSelection();
         currentPizza.setSize(getSelectedSize());
@@ -116,6 +169,11 @@ public class NYStyleController {
         updatePrice();
         updateCustomizationControls();
     }
+    /**
+     * Creates a pizza object based on selected type.
+     *
+     * @return the created Pizza object
+     */
     private Pizza createPizzaFromSelection() {
         String type = pizzaTypeBox.getValue();
         if ("Deluxe".equals(type)) {
@@ -128,6 +186,11 @@ public class NYStyleController {
             return pizzaFactory.createBuildYourOwn();
         }
     }
+    /**
+     * Gets the selected pizza size.
+     *
+     * @return selected Size enum
+     */
     private Size getSelectedSize() {
         if (smallButton.isSelected()) {
             return Size.small;
@@ -137,25 +200,35 @@ public class NYStyleController {
             return Size.large;
         }
     }
+    /**
+     * Checks if Build Your Own pizza is selected.
+     *
+     * @return true if BYO is selected, false otherwise
+     */
     private boolean isBuildYourOwnSelected() {
         return "Build Your Own".equals(pizzaTypeBox.getValue());
     }
+    /** Updates crust display field */
     private void updateCrust() {
         crustField.setText(Crust.crustInfo(currentPizza.getCrust()));
     }
+    /** Updates price display field */
     private void updatePrice() {
         priceField.setText(String.format("%.2f", currentPizza.price()));
     }
+    /** Updates selected toppings list */
     private void updateSelectedToppings() {
         selectedToppingsList.getItems().clear();
         selectedToppingsList.getItems().addAll(currentPizza.getToppings());
     }
+    /** Enables/disables customization controls for BYO pizzas */
     private void updateCustomizationControls() {
         boolean byo = isBuildYourOwnSelected();
         availableToppingsList.setDisable(!byo);
         addToppingButton.setDisable(!byo);
         removeToppingButton.setDisable(!byo);
     }
+    /** Updates pizza image based on selected type */
     private void updateImage() {
         String type = pizzaTypeBox.getValue();
         String imagePath = null;
@@ -181,6 +254,12 @@ public class NYStyleController {
             pizzaImage.setImage(null);
         }
     }
+    /**
+     * Displays an error alert.
+     *
+     * @param title alert title
+     * @param message alert message
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
